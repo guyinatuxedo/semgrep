@@ -1,0 +1,11 @@
+rules:
+  - id: fgets_variable_write
+    languages:
+     - c
+    message: fgets size parameter is variable.
+    patterns:
+     - pattern: fgets($DST, $SIZE, $STREAM);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 

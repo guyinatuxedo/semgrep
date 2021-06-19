@@ -1,0 +1,13 @@
+rules:
+  - id: fgets_static_size_overflow
+    languages:
+     - c
+    message: fgets can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         fgets($DST, $SIZE, $STREAM);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 

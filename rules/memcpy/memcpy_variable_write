@@ -1,0 +1,11 @@
+rules:
+  - id: memcpy_variable_write
+    languages:
+     - c
+    message: memcpy size parameter is variable.
+    patterns:
+     - pattern: memcpy($DST, $SRC, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 

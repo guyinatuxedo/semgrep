@@ -1,0 +1,7 @@
+rules:
+  - id: gets_is_called
+    languages:
+     - c
+    message: gets() is called, buffer overflow time
+    pattern: gets(...)
+    severity: ERROR

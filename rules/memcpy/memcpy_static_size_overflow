@@ -1,0 +1,13 @@
+rules:
+  - id: memcpy_static_size_overflow
+    languages:
+     - c
+    message: memcpy can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memcpy($DST, $SRC, $SIZE);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 

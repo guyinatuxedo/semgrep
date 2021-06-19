@@ -1,0 +1,11 @@
+rules:
+  - id: sprintf_s
+    languages:
+     - c
+    message: Sprintf uses "%s" fmt string.
+    patterns:
+     - pattern: sprintf($DST, $FMT_STRING, ...);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: ((^.*%S.*$)|(^.*%s.*$))
+    severity: INFO 

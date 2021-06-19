@@ -1,0 +1,11 @@
+rules:
+  - id: printf_fmt_string
+    languages:
+     - c
+    message: Potential fmt string vuln.
+    patterns:
+     - pattern: printf($FMT_STRING);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: (^[^"']+$)
+    severity: INFO 

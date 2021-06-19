@@ -1,0 +1,10 @@
+rules:
+  - id: fgets_dst_static
+    languages:
+     - c
+    message: fgets is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         fgets($DST, $SIZE, $STREAM);
+    severity: INFO 
