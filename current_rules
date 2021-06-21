@@ -1,0 +1,46 @@
+rules:
+  - id: gets_is_called
+    languages:
+     - c
+    message: gets() is called, buffer overflow time
+    pattern: gets(...)
+    severity: ERROR
+
+
+  - id: fgets_variable_write
+    languages:
+     - c
+    message: fgets size parameter is variable.
+    patterns:
+     - pattern: fgets($DST, $SIZE, $STREAM);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 
+
+
+  - id: fgets_static_size_overflow
+    languages:
+     - c
+    message: fgets can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         fgets($DST, $SIZE, $STREAM);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 
+
+
+  - id: fgets_dst_static
+    languages:
+     - c
+    message: fgets is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         fgets($DST, $SIZE, $STREAM);
+    severity: INFO 
+
+

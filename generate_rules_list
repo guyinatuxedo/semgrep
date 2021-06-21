@@ -1,0 +1,48 @@
+#!/bin/env python3
+
+import os
+
+print("hi")
+
+RULES_DIR = "rules"
+
+REPLACE_STRING = "<replace_this>"
+
+GETS_FUNCTIONS = ["gets"]
+FGETS_FUNCTIONS = ["fgets"]
+MEMCPY_FUNCTIONS = ["memcpy"]
+PRINTF_FUNCTIONS = ["printf"]
+SPRINTF_FUNCTIONS = ["sprintf"]
+STRCPY_FUNCTIONS = ["strcpy"]
+
+CLASS_MAPPINGS = {
+	"gets" : GETS_FUNCTIONS,
+	"fgets": FGETS_FUNCTIONS,
+	"memcpy": MEMCPY_FUNCTIONS,
+	"printf": PRINTF_FUNCTIONS,
+	"sprintf": SPRINTF_FUNCTIONS,
+	"strcpy": STRCPY_FUNCTIONS,
+}
+
+if __name__ == "__main__":
+	directory_listing = os.listdir(RULES_DIR)
+
+	os.remove("current_rules")
+	generated_rules_file = open("current_rules", 'w')
+
+	generated_rules_file.write("rules:\n")
+
+	for directory in directory_listing:
+		directory_path = "%s/%s" % (RULES_DIR, directory)
+		class_listing = os.listdir(directory_path)
+		for rule in class_listing:
+			if "prepped" in rule:
+				rule_path = "%s/%s" % (directory_path, rule)
+				print(rule_path)
+				file = open(rule_path, 'r')
+				rule_content = file.read() + "\n\n"
+				class_functions = CLASS_MAPPINGS[directory]
+				for function in class_functions:
+					current_rule_content = rule_content.replace(REPLACE_STRING, function)
+					generated_rules_file.write(current_rule_content)
+				file.close()

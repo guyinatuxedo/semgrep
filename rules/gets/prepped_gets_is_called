@@ -1,0 +1,6 @@
+  - id: gets_is_called
+    languages:
+     - c
+    message: <replace_this>() is called, buffer overflow time
+    pattern: <replace_this>(...)
+    severity: ERROR

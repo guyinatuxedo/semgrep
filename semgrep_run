@@ -1,0 +1,2 @@
+#!/bin/bash
+semgrep --config=current_rules example_source/
