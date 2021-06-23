@@ -1,0 +1,10 @@
+  - id: memcpy_variable_write
+    languages:
+     - c
+    message: <replace_this> size parameter is variable.
+    patterns:
+     - pattern: <replace_this>($DST, $SRC, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 

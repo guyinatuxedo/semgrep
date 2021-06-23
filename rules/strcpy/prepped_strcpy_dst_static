@@ -1,0 +1,9 @@
+  - id: strcpy_dst_static
+    languages:
+     - c
+    message: strcpy is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         <replace_this>($DST, $SRC);
+    severity: INFO 

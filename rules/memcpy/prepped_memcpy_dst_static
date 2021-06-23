@@ -1,0 +1,9 @@
+  - id: memcpy_dst_static
+    languages:
+     - c
+    message: <replace_this> is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         <replace_this>($DST, $SRC, $SIZE);
+    severity: INFO 
