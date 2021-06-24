@@ -23,107 +23,56 @@ ran 1 rules on 19 files: 1 findings
 sudo pip3 install semgrep
 ```
 
-## Rules to Write
-
-Rule Types:
-
-* [Function is Called Check](#Function is Called Check)
-* [Static Size Overflow Check](#Static Size Overflow Check)
-* [Dst is Static Size Check](#Dst is Static Size Check)
-* [Ambiguous Write Size Check](#Variable Write Size Check)
-* [Sprintf "%s" Check](#Sprintf "%s" Check)
-* [Fmt String Check](#Fmt String Check)
-
-#### Function is Called Check
-
-This check effectively will just check if the function is called.
-
-#### Static Size Overflow Check
-
-This check if it can get the size of the dst (if it has a static size), and the size that it can write. If it can, it will check to see if it can write more bytes than the dst buffer can hold.
-
-#### Dst is Static Size Check
-
-This is a check to see if the dst buffer has a static size.
-
-#### Variable Write Size Check
-
-This is a check to see if the size of the write is variable.
-
-#### Sprintf "%s" Check
-
-This is a check to see if `sprintf` (or equivalent) has a `%s` format string.
-
-#### Fmt String Check
-
-This is a check for a typical fmt string exploit (one you can use `%n` with).
+# Todo
 
 
-## Functions
+## Function Addtion:
 
-* gets
-* fgets
-* strcpy
-* memcpy
-* sprintf
-* printf
-
-#### gets
-
-Cheks:
 ```
-gets_is_called	:	Function is called
+Check (https://www.gnu.org/software/libc/manual/html_node/Function-Index.html)
+	-	a
+	-	b
+	-	c
+	-	d
+	-	e
+	-	f
+	-	g
+	-	h
+	-	i
+	-	j
+	-	k
+	-	l
+	-	m
+	-	n
+	-	o
+	-	p
+	-	q
+	-	r
+	-	s
+	-	t
+	-	u
+	-	v
+	-	w
+	-	x
+	-	y
+	-	z
 ```
 
-#### fgets
+## Feature Implementation:
 
-Checks:
 ```
-fgets_static_size_overflow	:	Static Size Overflow Check
-fgets_dst_static			:	Dst is Static Size Check
-fgets_variable_write		:	Variable Write Size Check
-```
-
-#### strcpy
-
-Checks:
-```
-strcpy_dst_static			:	Dst is Static Size Check
+Ghidra Integration
+Function fine tuning
+Output desing
 ```
 
-#### memcpy
-
-Checks:
+## Evaluation:
 ```
-memcpy_static_size_overflow	:	Static Size Overflow Check
-memcpy_dst_static			:	Dst is Static Size Check
-memcpy_variable_write		:	Variable Write Size Check
+000/100 CTF Challs
+00/20 Real World Targets
 ```
 
-#### sprintf
-
-Checks:
-```
-sprintf_s	:	Sprintf "%s" Check
+Functions to add:
 ```
 
-#### printf
-
-Checks:
-```
-printf_fmt_string	:	Fmt String Check
-```
-
-Functions:
-```
-gets
-fgets
-strcpy
-strcat
-strncpy
-memcpy
-memmove
-snprintf
-sprintf
-printf
 ```

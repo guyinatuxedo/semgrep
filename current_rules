@@ -7,6 +7,103 @@ rules:
     severity: ERROR
 
 
+  - id: fgets_variable_write
+    languages:
+     - c
+    message: fgets size parameter is variable.
+    patterns:
+     - pattern: fgets($DST, $SIZE, $STREAM);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 
+
+
+  - id: fgets_static_size_overflow
+    languages:
+     - c
+    message: fgets can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         fgets($DST, $SIZE, $STREAM);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 
+
+
+  - id: fgets_dst_static
+    languages:
+     - c
+    message: fgets is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         fgets($DST, $SIZE, $STREAM);
+    severity: INFO 
+
+
+  - id: memcpy_variable_write
+    languages:
+     - c
+    message: memcpy size parameter is variable.
+    patterns:
+     - pattern: memcpy($DST, $SRC, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 
+
+
+  - id: memcpy_static_size_overflow
+    languages:
+     - c
+    message: memcpy can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memcpy($DST, $SRC, $SIZE);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 
+
+
+  - id: memcpy_dst_static
+    languages:
+     - c
+    message: memcpy is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memcpy($DST, $SRC, $SIZE);
+    severity: INFO 
+
+
+  - id: sprintf_s
+    languages:
+     - c
+    message: Sprintf uses "%s" fmt string.
+    patterns:
+     - pattern: sprintf($DST, $FMT_STRING, ...);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: ((^.*%S.*$)|(^.*%s.*$))
+    severity: INFO 
+
+
+  - id: strcpy_dst_static
+    languages:
+     - c
+    message: strcpy is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         strcpy($DST, $SRC);
+    severity: INFO 
+
+
   - id: printf_fmt_string
     languages:
      - c
