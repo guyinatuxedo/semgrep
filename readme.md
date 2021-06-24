@@ -69,10 +69,6 @@ Output desing
 ## Evaluation:
 ```
 000/100 CTF Challs
-00/20 Real World Targets
-```
-
-Functions to add:
-```
-
+00/20 N-Days
+00/20 github
 ```
