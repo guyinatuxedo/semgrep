@@ -12,7 +12,15 @@ GETS_FUNCTIONS = ["gets"]
 FGETS_FUNCTIONS = ["fgets"]
 MEMCPY_FUNCTIONS = ["memcpy"]
 PRINTF_FUNCTIONS = ["printf"]
-SPRINTF_FUNCTIONS = ["sprintf"]
+SPRINTF_FUNCTIONS = [
+						"sprintf",
+						"asprintf",
+						]
+
+BCOPY_FUNCTIONS = [
+					"bcopy",
+]
+
 STRCPY_FUNCTIONS = ["strcpy"]
 
 CLASS_MAPPINGS = {
@@ -22,6 +30,7 @@ CLASS_MAPPINGS = {
 	"printf": PRINTF_FUNCTIONS,
 	"sprintf": SPRINTF_FUNCTIONS,
 	"strcpy": STRCPY_FUNCTIONS,
+	"bcopy": BCOPY_FUNCTIONS,
 }
 
 if __name__ == "__main__":

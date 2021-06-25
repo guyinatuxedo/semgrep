@@ -1,0 +1,13 @@
+rules:
+  - id: bcopy_static_size_overflow
+    languages:
+     - c
+    message: bcopy can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         bcopy($SRC, $DST, $SIZE);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 

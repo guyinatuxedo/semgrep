@@ -1,0 +1,10 @@
+  - id: bcopy_variable_write
+    languages:
+     - c
+    message: bcopy size parameter is variable.
+    patterns:
+     - pattern: <replace_this>($SRC, $DST, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 

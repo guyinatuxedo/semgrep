@@ -1,4 +1,4 @@
-  - id: sprintf_s
+  - id: <replace_this>_s
     languages:
      - c
     message: Sprintf uses "%s" fmt string.

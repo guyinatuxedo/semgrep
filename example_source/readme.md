@@ -145,12 +145,64 @@ memcpy_variable_write
 memcpy_dst_static
 ```
 
+## bcopy
+
+This class contains the following checks:
+* [bcopy-000](#bcopy-000)
+* [bcopy-001](#bcopy-001)
+* [bcopy-002](#bcopy-002)
+* [bcopy-003](#bcopy-003)
+* [bcopy-004](#bcopy-004)
+
+#### bcopy-000
+
+This is an instance where `bcopy` is scanning in more data into a stack buffer, then it can hold, and thus is a buffer overflow.
+
+It should be flagged by these rules:
+```
+bcopy_static_size_overflow
+bcopy_dst_static
+```
+
+### bcopy-001
+
+bcopy is scanning in a set amount of bytes into a buffer that is passed in as an arguments.
+
+It shouldn't be flagged by any rules.
+
+### bcopy-002
+
+Fgets is scanning in more data to a bss buffer then it can hold, and thus an overflow.
+
+It should be flagged by these rules:
+```
+bcopy_static_size_overflow
+bcopy_dst_static
+```
+
+### bcopy-003
+
+Fgets is scanning in data into a buffer that is dynamically allocated.
+
+It shouldn't be flagged by any rules.
+
+### bcopy-004
+
+bcopy is scanning in data into a buffer, with a variable size.
+
+It should be flagged by these rules:
+```
+bcopy_variable_write
+bcopy_dst_static
+```
+
 ## sprintf
 
 This class contains the following checks:
 * [sprintf-000](#sprintf-000)
 * [sprintf-001](#sprintf-001)
 * [sprintf-002](#sprintf-002)
+* [sprintf-000](#sprintf-003)
 
 #### sprintf-000
 
@@ -175,6 +227,15 @@ sprintf_s
 This is writing to a string with the `%2s` fmt string.
 
 It shouldn't be flagged by any rule.
+
+#### sprintf-003
+
+Basically `sprintf-000`, but with `asprintf`.
+
+It should be flagged by these rules:
+```
+sprintf_s
+```
 
 ## printf
 

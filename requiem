@@ -44,6 +44,7 @@ class ResultsParser():
                 del requiem_testcases.TESTCASES[key]
 
         if len(requiem_testcases.TESTCASES) != 0:
+            print(requiem_testcases.TESTCASES)
             raise AttributeError("Some checks were not flagged")
 
 
@@ -67,6 +68,8 @@ if __name__ == "__main__":
     output_file = open("output")
     json_data = output_file.read()
     data = json.loads(json_data)
+
+    print(data, "\n\n\n\n")
 
     results = data["results"]
 

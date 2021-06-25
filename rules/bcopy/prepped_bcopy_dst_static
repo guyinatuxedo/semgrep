@@ -1,0 +1,9 @@
+  - id: bcopy_dst_static
+    languages:
+     - c
+    message: bcopy is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         <replace_this>($SRC, $DST, $SIZE);
+    severity: INFO 

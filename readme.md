@@ -29,11 +29,15 @@ sudo pip3 install semgrep
 ## Function Addtion:
 
 ```
+05/28
+
 Check (https://www.gnu.org/software/libc/manual/html_node/Function-Index.html)
-	-	a
+
+
+
 	-	b
-	-	c
-	-	d
+
+
 	-	e
 	-	f
 	-	g

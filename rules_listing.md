@@ -75,11 +75,26 @@ memcpy_dst_static			:	Dst is Static Size Check
 memcpy_variable_write		:	Variable Write Size Check
 ```
 
+#### bcopy
+
+Checks:
+```
+bcopy_static_size_overflow	:	Static Size Overflow Check
+bcopy_dst_static			:	Dst is Static Size Check
+bcopy_variable_write		:	Variable Write Size Check
+```
+
 #### sprintf
 
 Checks:
 ```
 sprintf_s	:	Sprintf "%s" Check
+```
+
+Functions:
+```
+sprintf
+asprintf
 ```
 
 #### printf

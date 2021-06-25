@@ -1,4 +1,41 @@
 rules:
+  - id: bcopy_variable_write
+    languages:
+     - c
+    message: bcopy size parameter is variable.
+    patterns:
+     - pattern: bcopy($SRC, $DST, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 
+
+
+  - id: bcopy_dst_static
+    languages:
+     - c
+    message: bcopy is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         bcopy($SRC, $DST, $SIZE);
+    severity: INFO 
+
+
+  - id: bcopy_static_size_overflow
+    languages:
+     - c
+    message: bcopy can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         bcopy($SRC, $DST, $SIZE);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 
+
+
   - id: gets_is_called
     languages:
      - c
@@ -87,6 +124,18 @@ rules:
     message: Sprintf uses "%s" fmt string.
     patterns:
      - pattern: sprintf($DST, $FMT_STRING, ...);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: ((^.*%S.*$)|(^.*%s.*$))
+    severity: INFO 
+
+
+  - id: asprintf_s
+    languages:
+     - c
+    message: Sprintf uses "%s" fmt string.
+    patterns:
+     - pattern: asprintf($DST, $FMT_STRING, ...);
      - metavariable-regex:
          metavariable: $FMT_STRING
          regex: ((^.*%S.*$)|(^.*%s.*$))
