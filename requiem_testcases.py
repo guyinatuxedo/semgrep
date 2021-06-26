@@ -19,6 +19,8 @@ TESTCASES = {
 	concat("memcpy_dst_static", "example_source/memcpy/memcpy-002.c"): 1,
 	concat("memcpy_dst_static", "example_source/memcpy/memcpy-004.c"): 1,
 	concat("memcpy_variable_write", "example_source/memcpy/memcpy-004.c"): 1,
+	concat("memmove_static_size_overflow", "example_source/memcpy/memcpy-005.c"): 1,
+	concat("memmove_dst_static", "example_source/memcpy/memcpy-005.c"): 1,
 
 	concat("bcopy_static_size_overflow", "example_source/bcopy/bcopy-000.c"): 1,
 	concat("bcopy_dst_static", "example_source/bcopy/bcopy-000.c"): 1,
@@ -32,4 +34,11 @@ TESTCASES = {
 	concat("asprintf_s", "example_source/sprintf/sprintf-003.c"): 1,
 
 	concat("printf_fmt_string", "example_source/printf/printf-000.c"): 1,
+
+	concat("memset_static_size_overflow", "example_source/memset/memset-000.c"): 1,
+	concat("memset_dst_static", "example_source/memset/memset-000.c"): 1,
+	concat("memset_static_size_overflow", "example_source/memset/memset-002.c"): 1,
+	concat("memset_dst_static", "example_source/memset/memset-002.c"): 1,
+	concat("memset_dst_static", "example_source/memset/memset-004.c"): 1,
+	concat("memset_variable_write", "example_source/memset/memset-004.c"): 1,
 }

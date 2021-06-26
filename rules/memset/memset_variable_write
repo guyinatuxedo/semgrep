@@ -1,0 +1,11 @@
+rules:
+  - id: memset_variable_write
+    languages:
+     - c
+    message: memset size parameter is variable.
+    patterns:
+     - pattern: memset($DST, $BYTE, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 

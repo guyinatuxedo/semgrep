@@ -93,6 +93,18 @@ rules:
     severity: INFO 
 
 
+  - id: memmove_variable_write
+    languages:
+     - c
+    message: memmove size parameter is variable.
+    patterns:
+     - pattern: memmove($DST, $SRC, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
+    severity: INFO 
+
+
   - id: memcpy_static_size_overflow
     languages:
      - c
@@ -107,6 +119,20 @@ rules:
     severity: INFO 
 
 
+  - id: memmove_static_size_overflow
+    languages:
+     - c
+    message: memmove can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memmove($DST, $SRC, $SIZE);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 
+
+
   - id: memcpy_dst_static
     languages:
      - c
@@ -115,6 +141,54 @@ rules:
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
          memcpy($DST, $SRC, $SIZE);
+    severity: INFO 
+
+
+  - id: memmove_dst_static
+    languages:
+     - c
+    message: memmove is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memmove($DST, $SRC, $SIZE);
+    severity: INFO 
+
+
+  - id: memset_static_size_overflow
+    languages:
+     - c
+    message: memset can scan in more data than dst can hold.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memset($DST, $BYTE, $SIZE);
+     - metavariable-comparison:
+         comparison: $SIZE > $DST_SIZE
+         metavariable: $SIZE
+    severity: INFO 
+
+
+  - id: memset_dst_static
+    languages:
+     - c
+    message: memset is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memset($DST, $BYTE, $SIZE);
+    severity: INFO 
+
+
+  - id: memset_variable_write
+    languages:
+     - c
+    message: memset size parameter is variable.
+    patterns:
+     - pattern: memset($DST, $BYTE, $SIZE);
+     - metavariable-regex:
+         metavariable: $SIZE
+         regex: ([a-zA-Z]+)
     severity: INFO 
 
 

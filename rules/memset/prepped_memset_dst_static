@@ -5,5 +5,5 @@
     patterns:
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
-         <replace_this>($DST, $SRC, $SIZE);
+         <replace_this>($DST, $BYTE, $SIZE);
     severity: INFO 

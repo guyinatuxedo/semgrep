@@ -145,6 +145,16 @@ memcpy_variable_write
 memcpy_dst_static
 ```
 
+### memcpy-005
+
+This is basically `memcpy-000`, but with `memmove`.
+
+It should be flagged by these rules:
+```
+memmove_static_size_overflow
+memmove_dst_static
+```
+
 ## bcopy
 
 This class contains the following checks:
@@ -264,3 +274,54 @@ It should not be flagged by any rules.
 This is just `printf` printing a static string (with `'`) with no fmt strings.
 
 It should not be flagged by any rules.
+
+## memset
+
+This class contains the following checks:
+* [memset-000](#memset-000)
+* [memset-001](#memset-001)
+* [memset-002](#memset-002)
+* [memset-003](#memset-003)
+* [memset-004](#memset-004)
+
+#### memset-000
+
+This is an instance where `memset` is writing more data into a stack buffer, then it can hold, and thus is a buffer overflow.
+
+It should be flagged by these rules:
+```
+memset_static_size_overflow
+memset_dst_static
+```
+
+### memset-001
+
+memset is writing a set amount of bytes into a buffer that is passed in as an arguments.
+
+It shouldn't be flagged by any rules.
+
+### memset-002
+
+memset is writing more data to a bss buffer then it can hold, and thus an overflow.
+
+It should be flagged by these rules:
+```
+memset_static_size_overflow
+memset_dst_static
+```
+
+### memset-003
+
+memset is writing data into a buffer that is dynamically allocated.
+
+It shouldn't be flagged by any rules.
+
+### memset-004
+
+memset is writing data into a buffer, with a variable size.
+
+It should be flagged by these rules:
+```
+memset_variable_write
+memset_dst_static
+```

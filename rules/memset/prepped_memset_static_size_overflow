@@ -5,7 +5,7 @@
     patterns:
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
-         <replace_this>($DST, $SRC, $SIZE);
+         <replace_this>($DST, $BYTE, $SIZE);
      - metavariable-comparison:
          comparison: $SIZE > $DST_SIZE
          metavariable: $SIZE

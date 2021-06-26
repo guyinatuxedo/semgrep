@@ -1,0 +1,10 @@
+rules:
+  - id: memset_dst_static
+    languages:
+     - c
+    message: memset is scanning in data into a static size buffer.
+    patterns:
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         memset($DST, $BYTE, $SIZE);
+    severity: INFO 

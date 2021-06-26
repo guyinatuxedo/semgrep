@@ -3,7 +3,7 @@
      - c
     message: <replace_this> size parameter is variable.
     patterns:
-     - pattern: <replace_this>($DST, $SRC, $SIZE);
+     - pattern: <replace_this>($DST, $BYTE, $SIZE);
      - metavariable-regex:
          metavariable: $SIZE
          regex: ([a-zA-Z]+)

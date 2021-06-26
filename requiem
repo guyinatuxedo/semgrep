@@ -31,6 +31,7 @@ class ResultsParser():
             path = result.path
             key = requiem_testcases.concat(check_id, path)
             if key not in requiem_testcases.TESTCASES:
+                print(key)
                 raise AttributeError("Rule was flagged that wasn't defined by testcases")
 
             if (requiem_testcases.TESTCASES[key] <= 0):
@@ -69,7 +70,6 @@ if __name__ == "__main__":
     json_data = output_file.read()
     data = json.loads(json_data)
 
-    print(data, "\n\n\n\n")
 
     results = data["results"]
 

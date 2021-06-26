@@ -42,6 +42,7 @@ This is a check for a typical fmt string exploit (one you can use `%n` with).
 * [memcpy](#memcpy)
 * [sprintf](#sprintf)
 * [printf](#printf)
+* [memset](#memset)
 
 #### gets
 
@@ -102,4 +103,18 @@ asprintf
 Checks:
 ```
 printf_fmt_string	:	Fmt String Check
+```
+
+#### memset
+
+Checks:
+```
+memset_dst_static			:	Dst is Static Size Check
+memset_variable_write		:	Variable Write Size Check
+memset_static_size_overflow	:	Static Size Overflow Check
+```
+
+Functions:
+```
+memset
 ```

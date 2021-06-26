@@ -10,7 +10,8 @@ REPLACE_STRING = "<replace_this>"
 
 GETS_FUNCTIONS = ["gets"]
 FGETS_FUNCTIONS = ["fgets"]
-MEMCPY_FUNCTIONS = ["memcpy"]
+MEMCPY_FUNCTIONS = ["memcpy",
+					"memmove",]
 PRINTF_FUNCTIONS = ["printf"]
 SPRINTF_FUNCTIONS = [
 						"sprintf",
@@ -23,6 +24,8 @@ BCOPY_FUNCTIONS = [
 
 STRCPY_FUNCTIONS = ["strcpy"]
 
+MEMSET_FUNCTIONS = ["memset"]
+
 CLASS_MAPPINGS = {
 	"gets" : GETS_FUNCTIONS,
 	"fgets": FGETS_FUNCTIONS,
@@ -31,6 +34,7 @@ CLASS_MAPPINGS = {
 	"sprintf": SPRINTF_FUNCTIONS,
 	"strcpy": STRCPY_FUNCTIONS,
 	"bcopy": BCOPY_FUNCTIONS,
+	"memset": MEMSET_FUNCTIONS,
 }
 
 if __name__ == "__main__":
