@@ -29,19 +29,7 @@ sudo pip3 install semgrep
 ## Function Addtion:
 
 ```
-18/28
-
 Check (https://www.gnu.org/software/libc/manual/html_node/Function-Index.html)
-	-	b
-	-	f
-	-	g
-	-	m
-	-	p
-	-	r
-	-	s
-	-	v
-	-	w
-	-	x
 ```
 
 ## Feature Implementation:

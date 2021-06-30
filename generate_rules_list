@@ -26,6 +26,8 @@ STRCPY_FUNCTIONS = ["strcpy"]
 
 MEMSET_FUNCTIONS = ["memset"]
 
+SCANF_FUNCTIONS = ["scanf"]
+
 CLASS_MAPPINGS = {
 	"gets" : GETS_FUNCTIONS,
 	"fgets": FGETS_FUNCTIONS,
@@ -35,6 +37,7 @@ CLASS_MAPPINGS = {
 	"strcpy": STRCPY_FUNCTIONS,
 	"bcopy": BCOPY_FUNCTIONS,
 	"memset": MEMSET_FUNCTIONS,
+	"scanf": SCANF_FUNCTIONS,
 }
 
 if __name__ == "__main__":

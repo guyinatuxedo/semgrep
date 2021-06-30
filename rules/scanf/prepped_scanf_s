@@ -1,0 +1,10 @@
+  - id: <replace_this>_s
+    languages:
+     - c
+    message: <replace_this> uses "%s" fmt string.
+    patterns:
+     - pattern: <replace_this>($FMT_STRING, ...);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: ((^.*%S.*$)|(^.*%s.*$))
+    severity: INFO 

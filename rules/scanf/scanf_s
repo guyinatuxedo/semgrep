@@ -1,0 +1,11 @@
+rules:
+  - id: scanf_s
+    languages:
+     - c
+    message: Scanf uses "%s" fmt string.
+    patterns:
+     - pattern: scanf($FMT_STRING, ...);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: ((^.*%S.*$)|(^.*%s.*$))
+    severity: INFO 

@@ -41,4 +41,7 @@ TESTCASES = {
 	concat("memset_dst_static", "example_source/memset/memset-002.c"): 1,
 	concat("memset_dst_static", "example_source/memset/memset-004.c"): 1,
 	concat("memset_variable_write", "example_source/memset/memset-004.c"): 1,
+
+	concat("scanf_s", "example_source/scanf/scanf-000.c"): 1,
+	concat("scanf_s", "example_source/scanf/scanf-001.c"): 1,	
 }

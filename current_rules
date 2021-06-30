@@ -216,6 +216,18 @@ rules:
     severity: INFO 
 
 
+  - id: scanf_s
+    languages:
+     - c
+    message: scanf uses "%s" fmt string.
+    patterns:
+     - pattern: scanf($FMT_STRING, ...);
+     - metavariable-regex:
+         metavariable: $FMT_STRING
+         regex: ((^.*%S.*$)|(^.*%s.*$))
+    severity: INFO 
+
+
   - id: strcpy_dst_static
     languages:
      - c

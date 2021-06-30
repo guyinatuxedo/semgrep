@@ -43,6 +43,7 @@ This is a check for a typical fmt string exploit (one you can use `%n` with).
 * [sprintf](#sprintf)
 * [printf](#printf)
 * [memset](#memset)
+* [scanf](#scanf)
 
 #### gets
 
@@ -117,4 +118,11 @@ memset_static_size_overflow	:	Static Size Overflow Check
 Functions:
 ```
 memset
+```
+
+#### scanf
+
+Checks:
+```
+scanf_s		:	Fmt String Check
 ```

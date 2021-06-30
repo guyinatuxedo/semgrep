@@ -325,3 +325,34 @@ It should be flagged by these rules:
 memset_variable_write
 memset_dst_static
 ```
+
+## scanf
+
+This class contains the following checks:
+* [scanf-000](#scanf-000)
+* [scanf-001](#scanf-001)
+* [scanf-002](#scanf-002)
+
+### scanf-000
+
+This is a `scanf` call with `%s`, which is a buffer overflow.
+
+It should be flagged by these rules:
+```
+scanf_s
+```
+
+### scanf-001
+
+This is a `scanf` call with `%S`, which is a buffer overflow.
+
+It should be flagged by these rules:
+```
+scanf_s
+```
+
+### scanf-002
+
+This is a `scanf` call with `%10S`, which is not a buffer overflow.
+
+It shouldn't be flagged by anything:
