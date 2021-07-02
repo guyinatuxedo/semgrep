@@ -55,27 +55,37 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-r', metavar='rules', type=str, help="The rules for Requiem to use.")
     parser.add_argument('-c', metavar='code', type=str, help="The rules for Requiem to use.")
+    parser.add_argument('-t', metavar='code', type=bool, default=False, const=True, nargs="?", help="The rules for Requiem to use.")
 
     args = parser.parse_args()
 
     rules = args.r
     code = args.c
+    testing = args.t
 
-    cmd = "semgrep --config=%s %s --json > output" % (rules, code)
+    print(testing)
 
-    os.remove("output")
-    os.system(cmd)
+    if testing:
+        cmd = "semgrep --config=%s %s --json > output" % (rules, code)
 
-    output_file = open("output")
-    json_data = output_file.read()
-    data = json.loads(json_data)
+        os.remove("output")
+        os.system(cmd)
+
+        output_file = open("output")
+        json_data = output_file.read()
+        data = json.loads(json_data)
 
 
-    results = data["results"]
+        results = data["results"]
 
-    results_parser = ResultsParser()
+        results_parser = ResultsParser()
 
-    for result in results:
-        results_parser.add_result(result)
+        for result in results:
+            results_parser.add_result(result)
 
-    results_parser.run_tests()
+        results_parser.run_tests()
+
+    else:
+        cmd = "semgrep --config=%s %s > output" % (rules, code)
+
+        os.system(cmd)
