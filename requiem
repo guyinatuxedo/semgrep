@@ -48,7 +48,27 @@ class ResultsParser():
             print(requiem_testcases.TESTCASES)
             raise AttributeError("Some checks were not flagged")
 
+    def output_results(self):
+        current_directory = os.getcwd()
+        output_directory = current_directory + "/requiem_output" + "/"
+        i = 1
+        while (os.path.exists(output_directory)):
 
+            output_directory = current_directory + "/" + "requiem_output" + "-" + str(i) + "/"
+            i += 1
+        os.mkdir(output_directory)
+        os.chdir(output_directory)
+
+
+
+
+        print(current_directory)
+        self.generate_summary()
+
+    def generate_summary(self):
+        summary_file = open("summary", "w")
+        summary_file.write("Requiem Summary:\n\n")
+        summary_file.close()
 
 
 if __name__ == "__main__":
@@ -65,27 +85,28 @@ if __name__ == "__main__":
 
     print(testing)
 
+    cmd = "semgrep --config=%s %s --json > output" % (rules, code)
+
+    os.remove("output")
+    os.system(cmd)
+
+    output_file = open("output")
+    json_data = output_file.read()
+    data = json.loads(json_data)
+
+
+    results = data["results"]
+
+    results_parser = ResultsParser()
+
+    for result in results:
+        results_parser.add_result(result)
+
     if testing:
-        cmd = "semgrep --config=%s %s --json > output" % (rules, code)
-
-        os.remove("output")
-        os.system(cmd)
-
-        output_file = open("output")
-        json_data = output_file.read()
-        data = json.loads(json_data)
-
-
-        results = data["results"]
-
-        results_parser = ResultsParser()
-
-        for result in results:
-            results_parser.add_result(result)
-
         results_parser.run_tests()
 
     else:
-        cmd = "semgrep --config=%s %s > output" % (rules, code)
-
-        os.system(cmd)
+        results_parser.output_results()
+    #else:
+    #    cmd = "semgrep --config=%s %s > output" % (rules, code)
+    #    os.system(cmd)
