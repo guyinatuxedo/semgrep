@@ -20,9 +20,25 @@ class Result():
 class ResultsParser():
     def __init__(self):
         self.results = []
+        self.flagged_files = []
+        self.rules_count = {}
+        self.files_count = {}
 
     def add_result(self, result):
         new_result = Result(result)
+        if new_result.check_id not in self.rules_count:
+            self.rules_count[new_result.check_id] = 1
+        else:
+            self.rules_count[new_result.check_id] += 1
+
+        if new_result.path not in self.files_count:
+            self.files_count[new_result.path] = 1
+        else:
+            self.files_count[new_result.path] += 1
+
+        if new_result.path not in self.flagged_files:
+            self.flagged_files.append(new_result.path)
+        #print(new_result.check_id)
         self.results.append(new_result)
 
     def run_tests(self):
@@ -50,25 +66,59 @@ class ResultsParser():
 
     def output_results(self):
         current_directory = os.getcwd()
-        output_directory = current_directory + "/requiem_output" + "/"
+        output_directory = current_directory + "/output_requiem" + "/"
         i = 1
         while (os.path.exists(output_directory)):
 
-            output_directory = current_directory + "/" + "requiem_output" + "-" + str(i) + "/"
+            output_directory = current_directory + "/" + "output_requiem" + "-" + str(i) + "/"
             i += 1
         os.mkdir(output_directory)
         os.chdir(output_directory)
 
+        summary_file = open("REQUIEM_SUMMARY", "w")
 
+        summary_file.write("\n+{:=^60}+\n".format(""))
+        summary_file.write("|{:^60}|\n".format("Flagged Rules Summary"))
+        summary_file.write("+{:=^60}+\n\n".format(""))
+        #print("\n\nFlagged Rules Summary\n\n")
 
+        for flagged_rule in self.rules_count.keys():
+            flagged_rule_stmt = "{:<40}".format(flagged_rule)
+            flagged_count = self.rules_count[flagged_rule]
+            summary_file.write("%s\t:\t%d\n" % (flagged_rule_stmt, flagged_count))
 
-        print(current_directory)
-        self.generate_summary()
+        summary_file.write("\n+{:=^60}+\n".format(""))
+        summary_file.write("|{:^60}|\n".format("Flagged Files Summary"))
+        summary_file.write("+{:=^60}+\n\n".format(""))
+        #print("\n\nFlagged Rules Summary\n\n")
 
-    def generate_summary(self):
-        summary_file = open("summary", "w")
-        summary_file.write("Requiem Summary:\n\n")
+        for flagged_file in self.files_count.keys():
+            flagged_file_stmt = "{:<40}".format(flagged_file)
+            flagged_count = self.files_count[flagged_file]
+            summary_file.write("%s\t:\t%d\n" % (flagged_file_stmt, flagged_count))
+
+        summary_file.write("\n")
         summary_file.close()
+
+        '''
+        for flagged_file in self.flagged_files:
+            new_output_file = open(flagged_file.split("/")[-1], "w")
+
+            new_output_file.write("\n+{:=^60}+\n".format(""))
+            new_output_file.write("|{:^60}|\n".format("File Summary"))
+            new_output_file.write("+{:=^60}+\n\n".format(""))
+        '''
+
+
+            new_output_file.close()
+
+        #print(current_directory)
+        #self.generate_summary()
+
+    #def generate_summary(self):
+    #    summary_file = open("summary", "w")
+    #    summary_file.write("Requiem Summary:\n\n")
+    #    summary_file.close()
 
 
 if __name__ == "__main__":
