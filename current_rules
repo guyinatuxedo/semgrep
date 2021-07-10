@@ -236,6 +236,9 @@ rules:
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
          strcpy($DST, $SRC);
+     - metavariable-regex:
+         metavariable: $SRC
+         regex: ([a-zA-Z]+)
     severity: INFO 
 
 

@@ -94,6 +94,12 @@ Strcpy is writing data to a dynamically allocated buffer.
 
 It shouldn't be flagged by any rules.
 
+#### strcpy-000
+
+Strcpy is writing data to a buffer with a static size. However the data it is writing is a fixed string.
+
+It shouldn't be flagged by any rules.
+
 ## memcpy
 
 This class contains the following checks:

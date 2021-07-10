@@ -1,9 +1,12 @@
-  - id: strcpy_dst_static
+  - id: <replace_this>_dst_static
     languages:
      - c
-    message: strcpy is scanning in data into a static size buffer.
+    message: <replace_this> is scanning in data into a static size buffer.
     patterns:
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
          <replace_this>($DST, $SRC);
+     - metavariable-regex:
+         metavariable: $SRC
+         regex: ([a-zA-Z]+)
     severity: INFO 
