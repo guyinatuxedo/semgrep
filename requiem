@@ -16,6 +16,14 @@ class Result():
         self.message = extra["message"]
         self.severity = extra["severity"]
 
+    def generate_text(self):
+        text = ""
+        line = self.end['line']
+        text += "%s\n" % self.path
+        text += "line: %d\n" % line
+        text += "\n"
+        return text
+
 
 class ResultsParser():
     def __init__(self):
@@ -24,12 +32,27 @@ class ResultsParser():
         self.rules_count = {}
         self.files_count = {}
 
+        self.flagged_rules_path_cnt = {}
+        self.flagged_rules_storage = {}
+
     def add_result(self, result):
         new_result = Result(result)
         if new_result.check_id not in self.rules_count:
             self.rules_count[new_result.check_id] = 1
+            self.flagged_rules_path_cnt[new_result.check_id] = {new_result.path : 1}
+            self.flagged_rules_storage[new_result.check_id] = [new_result]
         else:
             self.rules_count[new_result.check_id] += 1
+            #if new_result.check_id not in self.flagged_rules_path_cnt:
+            #    self.flagged_rules_path_cnt[new_result.check_id] = {new_result.path : 1}
+            #else:
+            rule_dict = self.flagged_rules_path_cnt[new_result.check_id]
+            if new_result.path not in rule_dict:
+                rule_dict[new_result.path] = 1
+            else:
+                #print(rule_dict)
+                rule_dict[new_result.path] += 1
+            self.flagged_rules_storage[new_result.check_id].append(new_result)
 
         if new_result.path not in self.files_count:
             self.files_count[new_result.path] = 1
@@ -38,6 +61,8 @@ class ResultsParser():
 
         if new_result.path not in self.flagged_files:
             self.flagged_files.append(new_result.path)
+
+
         #print(new_result.check_id)
         self.results.append(new_result)
 
@@ -100,6 +125,31 @@ class ResultsParser():
         summary_file.write("\n")
         summary_file.close()
 
+        os.mkdir("rules_flagged")
+        os.chdir("rules_flagged")
+
+        for flagged_rule in self.flagged_rules_path_cnt.keys():
+            new_output_file = open(flagged_rule, "w")
+            new_output_file.write("\n+{:=^60}+\n".format(""))
+            new_output_file.write("|{:^60}|\n".format("Rule Summary"))
+            new_output_file.write("+{:=^60}+\n\n".format(""))
+
+            rule_dict = self.flagged_rules_path_cnt[flagged_rule]
+            for path in rule_dict.keys():
+                line = "{:<40}".format(path)
+                line += ":\t%d\n" % rule_dict[path]
+                new_output_file.write(line)
+
+            new_output_file.write("\n+{:=^60}+\n".format(""))
+            new_output_file.write("|{:^60}|\n".format("Flagged Instances"))
+            new_output_file.write("+{:=^60}+\n\n".format(""))
+
+            
+            for flag_instance in self.flagged_rules_storage[flagged_rule]:
+                new_output_file.write(flag_instance.generate_text())
+
+            new_output_file.close()
+
         '''
         for flagged_file in self.flagged_files:
             new_output_file = open(flagged_file.split("/")[-1], "w")
@@ -110,7 +160,7 @@ class ResultsParser():
         '''
 
 
-            new_output_file.close()
+        #new_output_file.close()
 
         #print(current_directory)
         #self.generate_summary()
@@ -137,7 +187,8 @@ if __name__ == "__main__":
 
     cmd = "semgrep --config=%s %s --json > output" % (rules, code)
 
-    os.remove("output")
+    if os.path.exists("output"):
+        os.remove("output")
     os.system(cmd)
 
     output_file = open("output")

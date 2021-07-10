@@ -1,0 +1,18 @@
+
++============================================================+
+|                        Rule Summary                        |
++============================================================+
+
+example_source/memset/memset-002.c      :	1
+example_source/memset/memset-000.c      :	1
+
++============================================================+
+|                     Flagged Instances                      |
++============================================================+
+
+example_source/memset/memset-002.c
+line: 9
+
+example_source/memset/memset-000.c
+line: 7
+

@@ -1,0 +1,52 @@
+
++============================================================+
+|                   Flagged Rules Summary                    |
++============================================================+
+
+bcopy_variable_write                    	:	1
+bcopy_dst_static                        	:	3
+bcopy_static_size_overflow              	:	2
+gets_is_called                          	:	1
+fgets_variable_write                    	:	1
+fgets_static_size_overflow              	:	2
+fgets_dst_static                        	:	3
+memcpy_variable_write                   	:	1
+memcpy_static_size_overflow             	:	2
+memmove_static_size_overflow            	:	1
+memcpy_dst_static                       	:	3
+memmove_dst_static                      	:	1
+memset_static_size_overflow             	:	2
+memset_dst_static                       	:	3
+memset_variable_write                   	:	1
+sprintf_s                               	:	2
+asprintf_s                              	:	1
+scanf_s                                 	:	2
+strcpy_dst_static                       	:	1
+printf_fmt_string                       	:	1
+
++============================================================+
+|                   Flagged Files Summary                    |
++============================================================+
+
+example_source/bcopy/bcopy-004.c        	:	2
+example_source/bcopy/bcopy-002.c        	:	2
+example_source/bcopy/bcopy-000.c        	:	2
+example_source/gets/gets-000.c          	:	1
+example_source/fgets/fgets-004.c        	:	2
+example_source/fgets/fgets-000.c        	:	2
+example_source/fgets/fgets-002.c        	:	2
+example_source/memcpy/memcpy-004.c      	:	2
+example_source/memcpy/memcpy-002.c      	:	2
+example_source/memcpy/memcpy-000.c      	:	2
+example_source/memcpy/memcpy-005.c      	:	2
+example_source/memset/memset-002.c      	:	2
+example_source/memset/memset-000.c      	:	2
+example_source/memset/memset-004.c      	:	2
+example_source/sprintf/sprintf-000.c    	:	1
+example_source/sprintf/sprintf-001.c    	:	1
+example_source/sprintf/sprintf-003.c    	:	1
+example_source/scanf/scanf-000.c        	:	1
+example_source/scanf/scanf-001.c        	:	1
+example_source/strcpy/strcpy-000.c      	:	1
+example_source/printf/printf-000.c      	:	1
+
