@@ -22,7 +22,7 @@ BCOPY_FUNCTIONS = [
 					"bcopy",
 ]
 
-STRCPY_FUNCTIONS = ["strcpy"]
+STRCPY_FUNCTIONS = ["strcpy", "strcat"]
 
 MEMSET_FUNCTIONS = ["memset"]
 

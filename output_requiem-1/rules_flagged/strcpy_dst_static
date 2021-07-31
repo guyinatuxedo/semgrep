@@ -1,0 +1,17 @@
+
++============================================================+
+|                        Rule Summary                        |
++============================================================+
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c:	2
+
++============================================================+
+|                     Flagged Instances                      |
++============================================================+
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 26
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 26
+

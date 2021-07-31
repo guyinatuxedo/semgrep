@@ -1,0 +1,48 @@
+
++============================================================+
+|                        Rule Summary                        |
++============================================================+
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c:	8
+/Hackery/semgrep_targets/uHTTP/source/controller.c:	4
+
++============================================================+
+|                     Flagged Instances                      |
++============================================================+
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 30
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 29
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 28
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 27
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 30
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 29
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 28
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c
+line: 27
+
+/Hackery/semgrep_targets/uHTTP/source/controller.c
+line: 66
+
+/Hackery/semgrep_targets/uHTTP/source/controller.c
+line: 66
+
+/Hackery/semgrep_targets/uHTTP/source/controller.c
+line: 66
+
+/Hackery/semgrep_targets/uHTTP/source/controller.c
+line: 66
+

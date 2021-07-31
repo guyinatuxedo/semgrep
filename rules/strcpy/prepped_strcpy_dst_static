@@ -2,11 +2,11 @@
     languages:
      - c
     message: <replace_this> is scanning in data into a static size buffer.
-    patterns:
+    pattern-either:
+     - pattern: char $DST[$DST_SIZE];
+         ...
+         <replace_this>($DST, $SRC);
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
          <replace_this>($DST, $SRC);
-     - metavariable-regex:
-         metavariable: $SRC
-         regex: ([a-zA-Z]+)
     severity: INFO 

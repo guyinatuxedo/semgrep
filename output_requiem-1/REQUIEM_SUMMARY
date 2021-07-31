@@ -1,0 +1,17 @@
+
++============================================================+
+|                   Flagged Rules Summary                    |
++============================================================+
+
+memset_dst_static                       	:	1
+memset_variable_write                   	:	1
+strcpy_dst_static                       	:	2
+strcat_dst_static                       	:	12
+
++============================================================+
+|                   Flagged Files Summary                    |
++============================================================+
+
+/Hackery/semgrep_targets/uHTTP/source/cgi.c	:	12
+/Hackery/semgrep_targets/uHTTP/source/controller.c	:	4
+

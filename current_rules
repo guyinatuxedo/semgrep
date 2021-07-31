@@ -232,13 +232,27 @@ rules:
     languages:
      - c
     message: strcpy is scanning in data into a static size buffer.
-    patterns:
+    pattern-either:
+     - pattern: char $DST[$DST_SIZE];
+         ...
+         strcpy($DST, $SRC);
      - pattern: $DATA_TYPE $DST[$DST_SIZE];
          ...
          strcpy($DST, $SRC);
-     - metavariable-regex:
-         metavariable: $SRC
-         regex: ([a-zA-Z]+)
+    severity: INFO 
+
+
+  - id: strcat_dst_static
+    languages:
+     - c
+    message: strcat is scanning in data into a static size buffer.
+    pattern-either:
+     - pattern: char $DST[$DST_SIZE];
+         ...
+         strcat($DST, $SRC);
+     - pattern: $DATA_TYPE $DST[$DST_SIZE];
+         ...
+         strcat($DST, $SRC);
     severity: INFO 
 
 
