@@ -1,5 +1,7 @@
 # semgrep
 
+test
+
 ## Usage
 
 To use semgrep:
